@@ -12,9 +12,14 @@ Usage:
 
 Options:
     <url>  Url argument in "example.com" format.
-    <method> Optional method argument.
+    <method> Optional http method argument.  Default is 'GET'.
+    <params> Optional query parameter argument.
+    <protocol> Option protocol argument.  Default is 'http'
+    --header Print only header of the http response.
+    --body Print only body of the http response.
     -h --help  Show this screen.
     -v --version  Show version.
+
 
 
 """
@@ -41,7 +46,7 @@ def main():
 
 
 
-
+# Builder method for URLs
 def build_url(scheme=None, host=None, path=None, params=None, fragment=None):
     url = Uri.new().with_scheme(scheme).with_host(host).with_path(path).to_uri()
     return url.to_string()
@@ -66,6 +71,7 @@ def get_response(url):
         print("Invalid URL")
 
 
+# Return only the headers of http response.
 def print_response_header(response):
     headers = response.headers
     for k, v in headers.items():
@@ -73,11 +79,14 @@ def print_response_header(response):
     return
 
 
+# Return only the body of http response.
 def print_response_body(response):
     text = response.text
     print(text)
     return
 
+
+# Unfinished POST method.  To do:  build json post request with user input.  Return response.
 def post_data():
     data = {}
     key = input("Enter field: ")
@@ -91,7 +100,3 @@ def post_data():
 
 if __name__ == '__main__':
     main()
-   
-
-# response = get_response('http://google.com')
-# print_reponse_header(response)
