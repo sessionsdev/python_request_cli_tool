@@ -75,7 +75,6 @@ def print_response_header(response):
 
 def print_response_body(response):
     text = response.text
-    # decoded_text = text.deco
     print(text)
     return
 
